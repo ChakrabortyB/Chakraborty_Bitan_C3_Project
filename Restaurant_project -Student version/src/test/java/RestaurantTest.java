@@ -65,4 +65,34 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     //<<<<<<<<<<<<<<Test for Part 3 /TDD Part >>>>>>>>>>>>>>>>
+    @Test
+    public void totalPrice_should_be_equal_to_total_price_of_added_items() {
+
+        List<String> selectedItems = new ArrayList<String>();
+        selectedItems.add("Sweet corn soup");
+        selectedItems.add("Vegetable lasagne");
+
+        int actualAmount = restaurant.calculateAmount(selectedItems);
+        assertEquals(388, actualAmount);
     }
+        @Test
+        public void totalPrice_should_not_be_random_or_fixed_value() {
+
+            List<String> selectedItems = new ArrayList<String>();
+            selectedItems.add("Sweet corn soup");
+            int actualAmount = restaurant.calculateAmount(selectedItems);
+            assertNotEquals(388, actualAmount);
+        }
+        @Test
+        public void totalPrice_should_not_be_less_than_total_price_of_items() {
+
+            List<String> selectedItems = new ArrayList<String>();
+            selectedItems.add("Sweet corn soup");
+            selectedItems.add("Vegetable lasagne");
+            
+            int actualAmount = restaurant.calculateAmount(selectedItems);
+            assertFalse(actualAmount<388,"Actual total price not less than total item's price test failed");
+        }
+        //<<<<<<<<<<<<<<Test for Part 3 /TDD Part >>>>>>>>>>>>>>>>
+	}
